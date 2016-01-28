@@ -1,0 +1,24 @@
+{
+  "name": "whosplayingnow",
+  "version": "1.0.0",
+  "description": "See current number of players in-game.",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/casperchia/whosPlayingNow.git"
+  },
+  "author": "Casper Chia",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/casperchia/whosPlayingNow/issues"
+  },
+  "homepage": "https://github.com/casperchia/whosPlayingNow#readme",
+  "dependencies": {
+    "ejs": "^2.4.1",
+    "express": "^4.13.4"
+  }
+}

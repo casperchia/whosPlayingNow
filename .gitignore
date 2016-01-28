@@ -1,5 +1,5 @@
-# Ignore settings file which contain sensitive info
-settings.config
+# Ignore config file which contain sensitive info
+config.js
 
 # Logs
 logs

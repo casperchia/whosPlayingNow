@@ -39,17 +39,6 @@ var server = app.listen(8080, function () {
   console.log("App listening at localhost:%s", port)
 })
 
-function getGamesWithCurrentPlayers(err, gamesList){
-   console.log(gamesList);
-   for(var i in gamesList){
-      var id = gamesList[i].appid;
-      var steamObj = new Steam({appid : id});
-      steamObj.getNumberOfCurrentPlayers(steamObj, function(err, playerCount){
-         console.log(playerCount);
-      })
-   }
-}
-
 function getGamesForUser(err, steamId){
    if(steamId.success == 1){
       steamId.include_appinfo = true;
@@ -64,8 +53,6 @@ function getGamesForUser(err, steamId){
 function getNumOfPlayersForGames(err, gamesList){
    for(var i in gamesList.games){
       var id = gamesList.games[i].appid;
-      // console.log(id);
-      // Get number of players for game
       options.path = currentPlayersPath + id;
       http.get(options, processHttpResponse)
          .on('error', function(e){
@@ -90,7 +77,6 @@ function extractResponseData(responses, res){
    if(gameData.response.result == 1){
       var url_parts = url.parse(res.req.path, true);
       var appid = url_parts.query.appid;
-      // console.log(appid + " : " + gameData.response.player_count);
       db.one("SELECT * FROM games WHERE id = $1", [appid])
          .then(function(data){
             console.log(data.id + " : " + data.name + " : " + gameData.response.player_count);
@@ -98,7 +84,6 @@ function extractResponseData(responses, res){
          .catch(function(err){
             console.log("ERROR:", err.message);
          })
-      // console.log(res.req.path);
    }else{
       console.log("No results for " + res.req.path);
    }
